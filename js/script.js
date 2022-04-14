@@ -24,10 +24,13 @@ function getFetch(){
         } else { 
           document.querySelector('h3').innerText = "Age unknown";
         } 
+
+        document.querySelector('h4').innerText = data.included.find(findContactInfo).attributes.citystate;
         //find the index that contains attributes.original.url
-        let imgUrl = data.included.find(imgObj).attributes.original.url;
+        let imgUrl = data.included.find(findImgUrl).attributes.original.url;
         document.querySelector('img').src = imgUrl;
 
+        document.querySelector('a').href = `mailto:${data.included.find(findContactInfo).attributes.email}?subject=Adoption Inquiry: ${info.name}`;
        // name age location summary picture data[0].attributes.ageString
       })
       .catch(err => {
@@ -35,6 +38,9 @@ function getFetch(){
       });
 }
 
-function imgObj(obj){
+function findImgUrl(obj){
   return obj.type === 'pictures';
+}
+function findContactInfo(obj){
+  return obj.type === 'orgs';
 }
