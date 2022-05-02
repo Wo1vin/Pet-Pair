@@ -10,4 +10,4 @@ The pet information is shown one at a time to give them the attention necessary 
 
 - Swipe/Drag Left to see the next pet
 
-- wipe/Drag Right to save pet using Local Storage
+- Swipe/Drag Right to save pet using Local Storage
