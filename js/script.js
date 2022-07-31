@@ -15,8 +15,9 @@ function changeLayout(){
   const main = document.getElementById('main').style;
   main.background = "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.8) 8%, rgba(255,255,255,.85) 50%, rgba(255,255,255,.8) 92%, rgba(255,255,255,0) 100%)";
   main.flexDirection = "column";
-  main.height = "71vh";
-  main.padding = "1em 2em";
+  main.height = "73vh";
+  // main.padding = "1em 2em";
+//background: rgba(255, 255, 255, 0.85); at max width 550px
 
   const interact = document.getElementById('interact').style;
   interact.justifyContent = 'center';
@@ -35,8 +36,6 @@ function changeLayout(){
       })
 
   petInfo.style.display = 'block';
-
-  imgCont.style.visibility = 'visible';
   imgCont.style.height = '68%';
   
   const footer = document.getElementById('footer'); 
@@ -68,34 +67,45 @@ function getInfo(){
         } else { 
           document.querySelector('h3').innerText = "Age unknown";
         } 
+        let orgInfo = data.included.find(findContactInfo).attributes;
+        document.querySelector('h4').innerText = "Location: " + orgInfo.citystate;
 
-        document.querySelector('h4').innerText = "Location: " + data.included.find(findContactInfo).attributes.citystate;
+        console.log(orgInfo.name);
 
-        //pulls the image file information from the data. info used: resolutionX, resolutionY, url 
-        let picInfo = data.included.find(findImgInfo).attributes.original;
-        const petPic = imgCont.querySelector('img');
-        if (picInfo.url === undefined){ //if there is no picture
-          imgCont.style.visibility = 'hidden';
-          const noImgAvailable  = document.createElement('h5');
-          noImgAvailable.textContent = `We couldn't get a good picture of ${info.name}, but you can request more information by contacting ${data.included.find(findContactInfo).attributes.name}`;
 
-          petInfo.appendChild(noImgAvailable);
-        } else{
-          // inputs the img url into the img element tag
-          petPic.src = picInfo.url;
+        const petPic = imgCont.querySelector('img'); //do not add .src to this
+        //pulls the image file information from the data. 
+        let picInfo = data.included.find(findImgInfo); //dont add attributes
+        function findImgInfo(obj){
+          return obj.type === 'pictures';
         }
+        
+        if(!picInfo){
+          // imgCont.style.visibility = 'hidden';
+          console.log("error");
+          petPic.src = 'https://cdn.searchenginejournal.com/wp-content/uploads/2020/08/404-pages-sej-5f3ee7ff4966b.png'
+          //or 'https://http.cat/404.png' 
+          //or 'https://peoplewithpets.com/wp-content/uploads/2019/11/people-with-pets-no-image-available.jpg'
 
-        //establishing variables for image width and height for ease of use
-        let imgWidth = picInfo.resolutionX;
-        let imgHeight = picInfo.resolutionY;
-        // console.log(imgWidth,imgHeight,petPic);
-
-          //if the height of img < 600px, change img object-fit: cover
-          if (imgHeight <= 600){
-            petPic.style.objectFit = 'cover';
-          } else if (imgHeight > 600){
-            petPic.style.objectFit = 'contain';
-          }
+          //create text block
+          let img404 = document.createElement('h5');
+          img404.textContent = `We couldn't get a good picture of ${info.name}, but you can request more information by contacting ${orgInfo.name}`;
+          petInfo.appendChild(img404);
+        } else {
+          imgCont.style.visibility = 'visible';
+          console.log('no error');
+          petPic.src = picInfo.attributes.original.url;
+          
+          //establishing variables for image width and height for ease of use
+          let imgWidth = picInfo.attributes.original.resolutionX;
+          let imgHeight = picInfo.attributes.original.resolutionY;
+            //if the height of img < 600px, change img object-fit: cover
+            if (imgHeight <= 600){
+              petPic.style.objectFit = 'cover';
+            } else {
+              petPic.style.objectFit = 'contain';
+            }
+        }
 
         document.querySelector('a').href = `mailto:${data.included.find(findContactInfo).attributes.email}?subject=Adoption Inquiry: ${info.name}`;
        // name age location summary picture data[0].attributes.ageString
@@ -111,6 +121,11 @@ function findImgUrl(obj){
 function findContactInfo(obj){
   return obj.type === 'orgs';
 }
-function findImgInfo(obj){
-  return obj.type === 'pictures';
-}
+// function findImgInfo(obj){
+//   console.log(obj.type === 'pictures');
+//   for (let i = 0; i <= obj.length ; i++){
+//     if(obj[i].type === 'pictures'){
+//       return;
+//     } else
+// }
+// }

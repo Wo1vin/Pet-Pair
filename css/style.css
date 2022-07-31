@@ -103,7 +103,7 @@ header{
         display: none;
         color: rgb(180, 70, 0);
     }
-        #petInfo h2,#petInfo h3,#petInfo h4,#footer a{
+        #petInfo h2,#petInfo h3,#petInfo h4,#petInfo h5,#footer a{
             text-align: center;
             font-family: 'Nunito Sans', sans-serif;
             font-weight: 800;
@@ -113,6 +113,11 @@ header{
         #petInfo h3,#petInfo h4{
             font-weight: 500;
             font-size: 2.25rem;
+        }
+        #petInfo h5{
+            font-size: 2.8rem;
+            width: 70%;
+            margin: auto;
         }
     div#imgCont{
         visibility: collapse;
@@ -165,6 +170,32 @@ Design for tablet displays from 601×962 through 1280×800 */
 800x1280 – 6.88% 1050 50%
 810×1080 – 6.63%
 601×962 – 5.02% */
+@media screen and (max-width: 550px){
+    header{
+        height: 17vh;
+    }
+    header span p {
+        font-size: 3.5rem;
+    }
+    #main{
+        height: 73vh;
+        width: 100vw;
+        border-radius: 28em;
+        
+    }
+}
+/* @media (max-width: 1100px){
+    #main{
+    }
+} */
+@media (min-width:550px) and (max-width: 1100px){
+    header{
+        height: 24vh;
+    }
+    #main{
+        height: 66vh;
+    }
+}
 @media screen and (max-height: 400px){
     html{
         font-size: 18%;
