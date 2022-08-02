@@ -12,10 +12,10 @@ function changeLayout(){
   document.getElementById('start').innerText = 'Next Pet';
 
   const header = document.querySelector('header');
-  header.style.height = "20vh";
+  header.style.height = "17vh";
   header.querySelector('p').style.fontSize = '3rem';
   const main = document.getElementById('main').style;
-  main.background = "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.8) 8%, rgba(255,255,255,.85) 50%, rgba(255,255,255,.8) 92%, rgba(255,255,255,0) 100%)";
+  main.background = "linear-gradient(90deg, rgba(255,255,255,0) 3%, rgba(255,255,255,.8) 12%, rgba(255,255,255,.85) 50%, rgba(255,255,255,.8) 88%, rgba(255,255,255,0) 97%)";
   main.flexDirection = "column";
   main.height = "73vh";
   // main.padding = "1em 2em";
@@ -31,7 +31,8 @@ function changeLayout(){
     contact.display = 'inline';
     const btn = [contact,start];
 
-      if (window.innerWidth < 550){
+      if (window.innerHeight >= window.innerWidth*1.5 ){
+        main.borderRadius = '28em';
         btn.forEach(el => {
           el.fontSize = '2rem';
           el.padding = '.4rem 2.4rem';
@@ -45,6 +46,7 @@ function changeLayout(){
           el.fontSize = '2.5rem';
           el.padding = '.5rem 3rem';
           el.margin = "0 2%";
+          el.borderRadius = '1.8em';
         })
       }
 
@@ -66,7 +68,7 @@ function getInfo(){
   },cache: 'reload'})
       .then(res => res.json()) // parse response as JSON
       .then(data => {
-        // console.log(data);
+        console.log(data);
         let info = data.data[0].attributes;
 
         document.querySelector('h2').innerText = info.name;
