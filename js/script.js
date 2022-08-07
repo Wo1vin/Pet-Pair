@@ -17,7 +17,7 @@ function changeLayout(){
   const main = document.getElementById('main').style;
   main.background = "linear-gradient(90deg, rgba(255,255,255,0) 3%, rgba(255,255,255,.8) 12%, rgba(255,255,255,.85) 50%, rgba(255,255,255,.8) 88%, rgba(255,255,255,0) 97%)";
   main.flexDirection = "column";
-  main.height = "73vh";
+  main.height = "76vh";
   // main.padding = "1em 2em";
 //background: rgba(255, 255, 255, 0.85); at max width 550px
 
@@ -89,22 +89,28 @@ function getInfo(){
         function findImgInfo(obj){
           return obj.type === 'pictures';
         }
-        let img404 = document.createElement('h5');
+        const h5element =  document.querySelector('h5');        
         if(!picInfo){
+          const img404 = document.createElement('h5');
+          if(!h5element) {
+            img404.textContent = `We couldn't get a good picture of ${info.name}, but you can request more information by contacting ${orgInfo.name}`;
+            imgCont.appendChild(img404).style.visibility = "visible";
+          } else {
+            h5element.textContent = `We couldn't get a good picture of ${info.name}, but you can request more information by contacting ${orgInfo.name}`;
+            h5element.style.visibility = "visible";
+            h5element.style.display = 'block';
+          }
           petPic.style.display = 'none';
           console.log("no image found");
           // petPic.src = 'https://cdn.searchenginejournal.com/wp-content/uploads/2020/08/404-pages-sej-5f3ee7ff4966b.png'
           //or 'https://http.cat/404.png' 
           //or 'https://peoplewithpets.com/wp-content/uploads/2019/11/people-with-pets-no-image-available.jpg'
-
           //create text block
-          img404.textContent = `We couldn't get a good picture of ${info.name}, but you can request more information by contacting ${orgInfo.name}`;
-          imgCont.appendChild(img404);
         } else {
+          if(h5element != null){h5element.style.display = 'none'};
           petPic.src = picInfo.attributes.original.url;
           imgCont.style.display = 'inline-flex';
           imgCont.style.visibility = 'visible';
-          imgCont.querySelectorAll('h5').remove();
           petPic.style.display = 'inherit';
           console.log('no error');
           //establishing variables for image width and height for ease of use
@@ -119,6 +125,13 @@ function getInfo(){
               petPic.style.objectFit = 'contain';
             }
         }
+        
+        // if(imgCont.querySelectorAll('h5').toArray().length > 1){ 
+        //   imgCont.querySelectorAll('h5').toArray().forEach(x => x.remove());
+        //   // console.log(imgCont.querySelectorAll('h5'));
+        // } else if(imgCont.querySelector('h5').length === 1){
+        //   imgCont.querySelector('h5').style.display = "none";
+        // } else {return}
         document.querySelector('a').href = `mailto:${data.included.find(findContactInfo).attributes.email}?subject=Adoption Inquiry: ${info.name}`;
        // name age location summary picture data[0].attributes.ageString
       })
