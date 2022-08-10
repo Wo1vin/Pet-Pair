@@ -65,7 +65,7 @@ function getInfo(){
     headers: {
       "Content-Type":"application/vnd.api+json",
       "Authorization":"Eq0WwliZ"
-  },cache: 'reload'})
+  },cache:'default'})
       .then(res => res.json()) // parse response as JSON
       .then(data => {
         console.log(data);
@@ -104,7 +104,7 @@ function getInfo(){
           petPic.src = picInfo.attributes.original.url;
           imgCont.style.display = 'inline-flex';
           imgCont.style.visibility = 'visible';
-          imgCont.querySelector('h5') ? imgCont.querySelector('h5').style.display = 'none': false;
+          imgCont.querySelectorAll('h5').remove();
           petPic.style.display = 'inherit';
           console.log('no error');
           //establishing variables for image width and height for ease of use
