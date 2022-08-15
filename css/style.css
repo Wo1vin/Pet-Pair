@@ -1,20 +1,23 @@
 html{
     font-size: 62.5%;
+    background: rgb(235,76,0);
+    height:fit-content;
+    min-height: 100%;
 }
 body{
+    min-height: 100vh;
     margin: 0;
-    padding: 3em;
     font-size: 1.4rem;
     background: rgb(235,76,0);
     background: linear-gradient(255deg, rgba(235,76,0,1) 0%, rgba(241,153,0,1) 38%, rgba(242,169,0,1) 53%, rgba(235,76,0,1) 100%);
     color: whitesmoke;
-    height: 100vh;
 }
 header{
-    margin: 1.5em 0;
+    margin: 0;
 }
     div{
         width: 100%;
+        padding-top: 3em;
         height: 3rem;
         display: flex;
         justify-content: center;
@@ -33,20 +36,26 @@ header{
         margin: .5rem 0;
         text-align: center;
         font-family: 'Nunito Sans', sans-serif;
+        font-weight: 500;
+        font-size: 1.6rem;
     }
 #main{
-    margin: 2em 0;
-    height: 60vh;
-    padding: 2em;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-    /* background-color: rgba(255, 239, 225, 0.65); */
+    margin: 2em auto 0 auto;
+    height:fit-content;
+    width:80vw;
+    padding: 2em 2em 3em 2em;
+    display: flex;
+    flex-direction:column-reverse;
+    align-items: center;
+    /* background-color: rgba(255, 255, 255, 0.534); */
+    background: none;
     border-radius: 2em;
     /* filter: drop-shadow(0 0 6px rgba(255, 239, 225,1)); */
     /* box-shadow: 0 0 10px rgba(255, 239, 225,1); */
 }
-    section.interact{
+    section#interact{
+        margin-top: 1.5em;
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -75,11 +84,48 @@ header{
         }
         button#contact{
             display: none;
+            background-color: rgb(180, 70, 0);
+            color: rgb(255, 233, 199);
+            box-shadow: -4px 4px rgb(86, 24, 0);
         }
-    
-    .petInfo{
+        
+    #petInfo{
         display: none;
+        color: rgb(180, 70, 0);
     }
-    img{
-        height: 60vh;
+        #petInfo h2,#petInfo h3,#petInfo h4,#footer a{
+            text-align: center;
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            margin: 0;
+        }
+        #petInfo h3,#petInfo h4{
+            font-weight: 500;
+            font-size: 1.3rem;
+        }
+    div#imgCont{
+        visibility: collapse;
+        padding-top: 1em;
+        width:86%;
+        height: 45vh;
+        /* overflow: hidden; */
+    }
+    img.petPic{
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
+        box-shadow: 5px 5px 5px rgb(86, 24, 0);
+    }
+#footer{
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+    #footer a{
+        color: rgb(86, 24, 0);
+        font-size: 1em;
+        text-decoration: none;
     }
