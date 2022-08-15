@@ -6,8 +6,5 @@ A web app that uses the RescueGroups.org API in order to find adoptable pets for
 The pet information is shown one at a time to give them the attention necessary for someone to want to find out more about the pet.
 
 ### Future Implementations: ###
-- Styling to make it look like a dating site
-
-- Swipe/Drag Left to see the next pet
-
-- Swipe/Drag Right to save pet using Local Storage
+- "click" heart to save pet to local storage
+- implement search by zipcode/city
