@@ -100,7 +100,11 @@ header{
         button#contact{
             display: none;
         }
-        
+        button:hover{
+            background-color:rgb(86 24 0);
+            color: rgb(255, 233, 199);
+            box-shadow:  0.125em -0.25em rgb(180, 70, 0), 0.25em  -0.12em rgb(180, 70, 0);
+        }
     #petInfo{
         height: 12%;
         display: none;
@@ -154,7 +158,15 @@ header{
         font-size: 3rem;
         text-decoration: none;
     }
-
+    #footer a:hover{
+        padding: 1rem 1.75rem;
+        border-radius: 3rem;
+        background-color: rgb(86, 24, 0);
+        color: rgb(255, 233, 199);
+        font-size: 3rem;
+        font-weight: 500;
+        text-decoration: none;
+    }
 /* MEDIA QUERIES
 Design for desktop displays from 1024×768 through 1920×1080
 Design for mobile displays from 360×640 through 414×896
